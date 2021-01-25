@@ -15,6 +15,12 @@ public class Vehiculo {
     private String marca;
     private String modelo;
 
+    public Vehiculo(){
+        this.matricula="";
+        this.marca="";
+        this.modelo="";
+    }
+    
     public Vehiculo(String matricula, String marca, String modelo) {
         this.matricula = matricula;
         this.marca = marca;

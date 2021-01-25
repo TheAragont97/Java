@@ -15,7 +15,8 @@ public class ProyectoVehiculos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //EventQueue.
+        //https://stackoverflow.com/questions/24214148/java-getinstance-vs-static
     }
     
 }
