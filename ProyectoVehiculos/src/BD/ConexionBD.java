@@ -14,78 +14,44 @@ import java.util.logging.Logger;
 
 
 public class ConexionBD {
-
-   
-  
-    static Connection conn=null;
-    static Statement st=null;
-    static ResultSet rs=null;
-    static String bd="clase";//cambiar
-    static String login="root";
-    static String password="";  
-    static String url="jdbc:mysql://localhost/"+bd;
-
+    //Variables Globales
+    private Connection conn;
+    private String host="localhost";
+    private String port="3307";
+    private String dbName="clase";
+    private String user="root";
+    private String password="1234";
     
-    public static Connection enlace (Connection conn) 
-{
-        try {
+    public Connection conectar(){
+        try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn=DriverManager.getConnection(url,login,password);
-        } catch (SQLException ex) {
-          System.out.println("Excepicon en la conexión");
-        } catch (ClassNotFoundException ex) {
-           System.out.println("No se encuentra la clase");
+            String url="jdbc:mysql://"+this.host+":"+this.port+"/"+this.dbName;
+            conn=DriverManager.getConnection(url, this.user, this.password);
+            System.out.println("Conexion Exitosa");
         }
-    return conn;
-}
-    
-     static ResultSet consulta() {
-         conn=enlace(conn);
-        try {
-            st=conn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println("excepcion");
+        catch(ClassNotFoundException | SQLException e){
+            System.out.println("Error, no se pudo conectar con la BD: "+e);
         }
-        try {
-            rs=st.executeQuery("select * from alumno");
-        } catch (SQLException ex) {
-           System.out.println("error en la query");
-        }
-        
-        return rs;
+        return conn;
     }
-
-
-     public static void imprimirConsulta(ResultSet rs){
-        try {
-            while (rs.next()){
-                System.out.print(rs.getInt(1)+"    ");
-                System.out.print(rs.getString("Nombre")+"     ");
-                System.out.print(rs.getString("Apellido1")+"     ");
-                System.out.println(rs.getString("Apellido2"));
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error en el resultset");
-            ex.printStackTrace();
-        }
-     }
-     
-     public static void cerrarSesion() {
-        try {
-            rs.close();
-            st.close();
-            conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ConexionBD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     }
+    
+   
     public static void main(String[] args) {
-        
-        
-        conn=enlace(conn);
-        rs=consulta();
-        imprimirConsulta(rs);
-        cerrarSesion();
-        
+        ConexionBD c= new ConexionBD();
+        c.conectar();
+        Statement st;
+        ResultSet rs;
+        try{
+            st = c.conn.createStatement();
+            rs=st.executeQuery("select * from vehiculo");
+            while(rs.next()){
+                System.out.println(rs.getInt("id")+" "+rs.getString("marca")
+                +" "+rs.getString("modelo")+" "+rs.getString("matricula"));
+            }
+            c.conn.close();
+        }
+        catch(Exception e){
+            System.out.println("Error: "+e);
+        }
     }
 }
