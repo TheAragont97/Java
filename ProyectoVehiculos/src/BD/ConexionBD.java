@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 public class ConexionBD {
     //Variables Globales
-    private Connection conn;
+    public Connection conn;
     private String host="localhost";
     private String port="3307";
     private String dbName="clase";
@@ -33,25 +33,5 @@ public class ConexionBD {
             System.out.println("Error, no se pudo conectar con la BD: "+e);
         }
         return conn;
-    }
-    
-   
-    public static void main(String[] args) {
-        ConexionBD c= new ConexionBD();
-        c.conectar();
-        Statement st;
-        ResultSet rs;
-        try{
-            st = c.conn.createStatement();
-            rs=st.executeQuery("select * from vehiculo");
-            while(rs.next()){
-                System.out.println(rs.getInt("id")+" "+rs.getString("marca")
-                +" "+rs.getString("modelo")+" "+rs.getString("matricula"));
-            }
-            c.conn.close();
-        }
-        catch(Exception e){
-            System.out.println("Error: "+e);
-        }
     }
 }
