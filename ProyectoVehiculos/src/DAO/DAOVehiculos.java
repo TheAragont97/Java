@@ -135,7 +135,7 @@ public class DAOVehiculos implements IDAOVehiculo{
             st = c.conn.createStatement();
             rs=st.executeQuery("SELECT * FROM vehiculo WHERE matricula="+matricula+"");
             while(rs.next()){
-                v = new Vehiculo(rs.getString("matricula"),rs.getString("marca"),rs.getString("modelo"));
+                v = new Vehiculo(rs.getString("marca"),rs.getString("modelo"),rs.getString("matricula"));
             }
             c.conn.close();
         }
@@ -157,7 +157,7 @@ public class DAOVehiculos implements IDAOVehiculo{
             st = c.conn.createStatement();
             rs=st.executeQuery("SELECT * FROM vehiculo");
             while(rs.next()){
-                v = new Vehiculo(rs.getString("matricula"),rs.getString("marca"),rs.getString("modelo"));
+                v = new Vehiculo(rs.getString("marca"),rs.getString("modelo"),rs.getString("matricula"));
                 lstVehiculo.add(v);
             }
             c.conn.close();
