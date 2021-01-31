@@ -1,6 +1,6 @@
-package IDAO;
+package proyectovehiculos;
 
-import POJOs.Vehiculo;
+import proyectovehiculos.model.Vehiculo;
 import java.util.List;
 
 public interface IDAOVehiculo 

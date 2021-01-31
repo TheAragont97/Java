@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package proyectovehiculos;
 
-import BD.ConexionBD;
-import IDAO.IDAOVehiculo;
-import POJOs.Vehiculo;
+import proyectovehiculos.model.Vehiculo;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.List;
 public class DAOVehiculos implements IDAOVehiculo{
 
     //Atributos
-    private IDAOVehiculo dao=null;
+    private static DAOVehiculos dao;
     //private Connection con=null;
     private DAOVehiculos() {
         
@@ -165,9 +163,9 @@ public class DAOVehiculos implements IDAOVehiculo{
         catch(Exception e){
             System.out.println("Error: "+e);
         }
-        return (List)v;
+        return lstVehiculo;
     }
-    public IDAOVehiculo getInstance(){
+    public static IDAOVehiculo getInstance(){
         if(dao==null){
             dao=new DAOVehiculos();
         }
