@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controlador.Controller;
 import DAO.DAOVehiculos;
 import POJOs.Vehiculo;
 import java.util.List;
@@ -15,14 +16,16 @@ import javax.swing.table.DefaultTableModel;
  * @author arago
  */
 public class Plantilla extends javax.swing.JPanel {
-    private DAOVehiculos dao;
+    //Variables Globales
+    Controller c;
     /**
      * Creates new form Plantilla
      */
     public Plantilla() {
         initComponents();
+        c=new Controller();
         JTable jTable1 = new JTable();
-        //cargarTabla(jTable1);
+        c.cargarTabla(jTable1);
     }
 
     /**
@@ -134,33 +137,10 @@ public class Plantilla extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel modelo=(DefaultTableModel) jTable1.getModel();
-        Object[] fila= new Object[3];
-        fila[0]=txtMarca.getText();
-        fila[1]=txtModelo.getText();
-        fila[2]=txtMatricula.getText();
-        modelo.addRow(fila);
-        dao.getInstance().insertarVehiculo(new Vehiculo(txtMarca.getText(),txtModelo.getText(),txtMatricula.getText()));
-        jTable1.setModel(modelo);
+        c.insertarTabla(jTable1, txtMarca, txtModelo, txtMatricula);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void cargarTabla(JTable tabla){
-         List<Vehiculo> lstVehiculo = dao.getInstance().getVehiculos();
-         DefaultTableModel modelo= new DefaultTableModel();
-         modelo.addColumn("Marca");
-         modelo.addColumn("Modelo");
-         modelo.addColumn("Matricula");
-         for(Vehiculo vehiculo:lstVehiculo){
-             System.out.println(vehiculo.getMarca());
-             System.out.println(vehiculo.getMarca());
-             Object[] registroLeido = new Object[3];
-             registroLeido[0]=vehiculo.getMarca();
-             registroLeido[1]=vehiculo.getModelo();
-             registroLeido[2]=vehiculo.getMatricula();
-             modelo.addRow(registroLeido);
-         }
-         tabla.setModel(modelo);
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
