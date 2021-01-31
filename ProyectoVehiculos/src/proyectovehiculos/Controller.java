@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlador;
+package proyectovehiculos;
 
-import DAO.DAOVehiculos;
-import POJOs.Vehiculo;
+import proyectovehiculos.model.Vehiculo;
 import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTextField;

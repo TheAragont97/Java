@@ -5,12 +5,6 @@
  */
 package Vista;
 
-import DAO.DAOVehiculos;
-import POJOs.Vehiculo;
-import java.util.List;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Usuario

@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package proyectovehiculos;
 
-import BD.ConexionBD;
-import IDAO.IDAOVehiculo;
-import POJOs.Vehiculo;
+import proyectovehiculos.model.Vehiculo;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
