@@ -18,7 +18,7 @@ import java.util.List;
 public class DAOVehiculos implements IDAOVehiculo{
 
     //Atributos
-    private IDAOVehiculo dao=null;
+    private static DAOVehiculos dao;
     //private Connection con=null;
     private DAOVehiculos() {
         
@@ -165,7 +165,7 @@ public class DAOVehiculos implements IDAOVehiculo{
         }
         return (List)v;
     }
-    public IDAOVehiculo getInstance(){
+    public static IDAOVehiculo getInstance(){
         if(dao==null){
             dao=new DAOVehiculos();
         }
