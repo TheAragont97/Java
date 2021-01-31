@@ -163,7 +163,7 @@ public class DAOVehiculos implements IDAOVehiculo{
         catch(Exception e){
             System.out.println("Error: "+e);
         }
-        return (List)v;
+        return lstVehiculo;
     }
     public static IDAOVehiculo getInstance(){
         if(dao==null){
