@@ -33,7 +33,7 @@ public class DAOVehiculos implements IDAOVehiculo{
         ResultSet rs;
         try{
             st = c.conn.createStatement();
-            rs=st.executeQuery("INSERT INTO vehiculo(marca,modelo,matricula) VALUES("+vehiculo.getMarca()+","+vehiculo.getModelo()+","+vehiculo.getMatricula()+")");
+            rs=st.executeQuery("INSERT INTO vehiculo(marca,modelo,matricula) VALUES('"+vehiculo.getMarca()+"','"+vehiculo.getModelo()+"','"+vehiculo.getMatricula()+"')");
 //            while(rs.next()){
 //                System.out.println(rs.getInt("id")+" "+rs.getString("marca")
 //                +" "+rs.getString("modelo")+" "+rs.getString("matricula"));

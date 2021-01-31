@@ -24,12 +24,11 @@ public class Controller {
          modelo.addColumn("Modelo");
          modelo.addColumn("Matricula");
          for(Vehiculo vehiculo:lstVehiculo){
-             System.out.println(vehiculo.getMarca());
-             System.out.println(vehiculo.getMarca());
              Object[] registroLeido = new Object[3];
              registroLeido[0]=vehiculo.getMarca();
              registroLeido[1]=vehiculo.getModelo();
              registroLeido[2]=vehiculo.getMatricula();
+             System.out.println(vehiculo.getMarca()+vehiculo.getModelo()+vehiculo.getMatricula());
              modelo.addRow(registroLeido);
          }
          tabla.setModel(modelo);
@@ -41,7 +40,13 @@ public class Controller {
         fila[1]=txtModelo.getText();
         fila[2]=txtMatricula.getText();
         modelo.addRow(fila);
-        dao.getInstance().insertarVehiculo(new Vehiculo(txtMarca.getText(),txtModelo.getText(),txtMatricula.getText()));
+        int result=dao.getInstance().insertarVehiculo(new Vehiculo(txtMarca.getText(),txtModelo.getText(),txtMatricula.getText()));
+        if(result==0){
+            System.out.println("Se han insertado correctamente los datos");
+        }
+        else{
+            System.out.println("Error en la inserción de datos");
+        }
         jTable1.setModel(modelo);
     }
 }

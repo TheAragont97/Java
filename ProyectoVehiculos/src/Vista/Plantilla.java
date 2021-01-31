@@ -22,7 +22,6 @@ public class Plantilla extends javax.swing.JPanel {
     public Plantilla() {
         initComponents();
         c=new Controller();
-        JTable jTable1 = new JTable();
         c.cargarTabla(jTable1);
     }
 
